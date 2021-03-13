@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+#myProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+
+#myBar {
+  width: 1%;
+  height: 30px;
+  background-color: #4CAF50;
+}
+
+
+
+</style>
+
+
+
+
+
+
+
+<script>
+var i = 0;
+function move() {
+  if (i == 0) {
+    i = 1;
+    var elem = document.getElementById("myBar");
+    var width = 1;
+    var id = setInterval(frame, 100);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+        i = 0;
+      } else {
+        width++;
+        elem.style.width = width + "%";
+      }
+    }
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+  <!-- ======= About Section ======= -->
+
+  <br>
+
+  <section id="about" class="about">
+
+    <div class="container">
+
+      <div class="row">
+
+          <div class="col">
+
+              <h1>Creating your bot!</h1>
+
+              <br>
+
+              <form method="POST">
+
+                {{form.csrf_token}}
+                {{ form.insta_user.label(class_="form-label") }}
+                {{ form.insta_user(class_="form-control") }}
+                <div id="emailHelp" class="form-text">The Instagram account that your bot will use to likes and comments</div>
+                <br>
+                {{ form.insta_password.label(class_="form-label") }}
+                {{ form.insta_password(class_="form-control") }}
+                <br>
+                {{ form.tags.label(class_="form-label") }}
+                {{ form.tags(class_="form-control") }}
+                <div id="emailHelp" class="form-text">
+                  Enter tags separated by comma. Like this:
+                  <mark>kitesurf, snowboard</mark></div>
+                <br>
+                {{ form.comments.label(class_="form-label") }}
+                {{ form.comments(class_="form-control") }}
+                <div id="emailHelp" class="form-text">
+                  Enter comments separated by comma.For emoji use
+                  <a href="https://www.webfx.com/tools/emoji-cheat-sheet/" target="_blank">
+                  code here</a>  Like this: <mark>you rock :punch:</mark>
+                </div>
+
+                <!-- -->
+                <!--
+                <br>
+                {{ form.location.label(class_="form-label") }}
+                {{ form.location(class_="form-control") }}
+                <div id="emailHelp" class="form-text">
+                  Specify locations for which your bot will looks for tags. Leave it blank if you don't want to filter on locations.
+                  Use <a href="https://www.instagram.com/explore/locations/?hl=en" target="_blank">
+                  those locations</a>
+                </div>
+                <br>
+                {{ form.radius.label(class_="form-label") }}
+                {{ form.radius(class_="form-control") }}
+                <div id="emailHelp" class="form-text">
+                Specify radius in miles for your bot to look around you locations.
+                </div>
+                -->
+
+                <br>
+                {{ form.media.label(class_="form-label") }}
+                {{ form.media(class_="form-control") }}
+                <br><br>
+                {{form.submit(class_="btn btn-success")}} <br><br>
+
+                  <div class="myProgress">
+                     <div id="myBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  Loading your Instagram information
+
+               </form>
+
+           </div>
+
+      <div class="col" style="vertical-align:bottom"  >
+        <img src="static/img/botform.png" width="500" alt="">
+
+
+      </div>
+
+
+
+  </div>
+
+
+
+  </section><!-- End About Section -->
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="fade-up">
+          <div>
+            <h1>Create your instagram bot in seconds!</h1>
+            <h2>Want new followers for 8.99$ ?</h2>
+            <a href="{{url_for('profile')}}" class="btn-get-started scrollto">Get Started</a>
+          </div>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left">
+          <img src="static/img/Daco_5321771.png" class="img-fluid" alt="">
+        </div>
+      </div>
+    </div>
+
+  </section><!-- End Hero -->
+
+
+
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+
+    <section id="about" class="about">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-6" data-aos="zoom-in">
+            <img src="static/img/Daco_5615848.png" width="500" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 d-flex flex-column justify-contents-center" data-aos="fade-left">
+            <div class="content pt-4 pt-lg-0">
+              <h1>Optimize your time and grow your audience!</h1>
+              <h5>Here is what insta#bot could do for you: </h5><br>
+              <p>Like and comment instagram contents based on: </p>
+
+              <ul>
+                <li><i class="bi bi-check-circle"></i>Tags </li>
+                <li><i class="bi bi-check-circle"></i>Media type (photo/video)</li>
+                <li><i class="bi bi-check-circle"></i>Location</li>
+              </ul>
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+
+
+
+
+    {% endblock %}

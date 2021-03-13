@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section id="about" class="about">
+  <div class="container">
+
+     {% for message in get_flashed_messages() %}
+       <div class="alert alert-success alert-dismissible fade show" role="alert">
+         {{ message }}
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+       </div>
+      {% endfor %}
+
+
+      <h1>Please Register, it's free !</h1>
+      <br>
+
+      <form method="POST">
+        {{form.csrf_token}}
+
+        {{ form.username.label(class_="form-label") }}
+        {{ form.username(class_="form-control") }}
+        <br>
+
+        {{ form.email.label(class_="form-label") }}
+        {{ form.email(class_="form-control") }}
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        <br>
+        {{ form.password.label(class_="form-label") }}
+        {{ form.password(class_="form-control") }}
+        <br>
+        {{form.submit(class_="btn btn-success")}}
+
+        </form>
+
+    </div>
+
+</section><!-- End About Section -->
+
+
+{% endblock %}

@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<section id="hero" class="hero">
+<div class="container">
+
+  {% for message in get_flashed_messages() %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endfor %}
+
+
+
+    {% if cnt_bots == 0 %}
+
+    <h1>Welcome !</h1>
+
+
+      <h2>Step 1 : Create your first Instagram Ints@bot !</h2>
+
+      <table style="width:700px">
+
+          <tr>
+
+            <td  style="vertical-align:top; text-align:left">
+
+              <img src="static/img/no_bot.png" width="140" alt="">
+
+            </td>
+
+
+            <td  style="vertical-align:middle; text-align:left">
+
+              <ul>
+                <li> You can create many bot as you want. It's free to create</li>
+                <li> You're only charged when you start your bot</li>
+                <br>
+                <a href="{{url_for('addbot')}}" class="btn btn-success">Create Bot</a>
+
+              </ul>
+
+            </td>
+
+
+            <td  style="vertical-align:top; text-align:left">
+
+
+            </td>
+
+
+          </tr>
+
+      </table>
+
+
+
+
+
+    {% else %}
+
+
+        <h2>Manage and start your Ints@bots !</h2>
+
+
+        <table class="table table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Account</th>
+              <th scope="col">Bot Created date</th>
+              <th scope="col">Followers</th>
+              <th scope="col">Followees</th>
+              <th scope="col">Posts</th>
+
+              <th scope="col">Tags</th>
+              <th scope="col">Comments</th>
+              <th scope="col">Status</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+
+          {% for bot in bots %}
+
+          <tbody>
+
+            <tr>
+              <th style="vertical-align:middle" style="text-align:center" scope="row" >{{bot.id}}</th>
+              <td style="vertical-align:middle" style="text-align:center"> <img src="data:image/jpg;base64,{{ bot.img_data.decode('ascii') }}" width="40"> </td>
+              <td style="vertical-align:middle" style="text-align:center"> {{ bot.created_dt.strftime('%Y/%m/%d') }} </td>
+              <td style="vertical-align:middle" style="text-align:center"> {{bot.followers}} </td>
+              <td style="vertical-align:middle" style="text-align:center"> {{bot.followees}} </td>
+              <td style="vertical-align:middle" style="text-align:center"> {{bot.posts}} </td>
+              <td style="vertical-align:middle" style="text-align:center"> #{{bot.tags}} </td>
+              <td style="vertical-align:middle" style="text-align:center"> {{ emoji.emojize(bot.comments, use_aliases=True) }}  </td>
+
+
+              <td style="vertical-align:middle" style="text-align:center">
+
+                {% if bot.paid == False %}
+
+                  <a href="{{url_for('qjob', id=bot.id )}}">Run</a>
+
+                {% else %}
+
+                  {{ bot.status }}
+
+                {% endif %}
+
+              </td>
+
+
+              <td style="vertical-align:middle" style="text-align:center">
+
+                <a href="{{url_for('delete', id=bot.id )}}">delete</a>
+
+              </td>
+
+
+            </tr>
+
+          </tbody>
+
+
+          {% endfor %}
+
+        </table>
+
+        <a href="{{url_for('addbot')}}" class="btn btn-success">Create Bot</a>
+
+
+    {% endif %}
+
+
+
+
+    <br><br><br><br>
+
+
+    <table>
+
+        <tr>
+
+          <td  style="vertical-align:top" style="text-align:right">
+
+            <h2>Analyse your reports & improve your strategy</h2>
+
+
+            <p>When your bot is started, it goes on a job server. Normally it takes 20-24 hours
+              to your bot to perfrome  500 likes and comments. Your  bot cadence is calculated
+              in order to be conform with instagram policy  to ensure you that you are not
+              gonna be banned from Instagram.
+            </p>
+
+            <p>As soon as your bot's job is done, you will receive analytic report by
+              email with the complete log plus a few screenshot sample from your bot.
+            </p>
+
+            <p>With those log files combine with the instagram KPI in you user profile,
+              you willl have everything in hand to improve your instagram
+              communication strategy and grow your audiance.
+            </p>
+
+
+
+
+          </td>
+
+
+          <td>
+
+               <img src="static/img/email_ex.png" width="500" alt="">
+
+          </td>
+
+        </tr>
+
+
+    </table>
+
+
+
+
+
+    <br>
+
+
+
+
+
+
+
+
+</div>
+</section><!-- End About Section -->
+
+
+{% endblock %}
