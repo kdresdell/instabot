@@ -138,15 +138,6 @@ def index():
 
 
 
-@app.route('/statusinfo', methods = ['POST'])
-def statusinfo():
-    return jsonify('', render_template('botstatus.html', bstatus=bstatus))
-
-
-
-
-
-
 
 #login route
 @app.route('/login' , methods = ['GET', 'POST'])
@@ -336,7 +327,7 @@ def qjob(id):
 
     from utils import run_instapy_bot
 
-    job = q.enqueue(run_instapy_bot, args=(Pemail, Pinsta_user, Pinsta_password, Ptags, Pcomments, Pmedia, Pbot_id) ,job_timeout=36000,
+    job = q.enqueue(run_instapy_bot, args=(Pemail, Pinsta_user, Pinsta_password, Ptags, Pcomments, Pmedia, Pbot_id) ,job_timeout=72000,
                     result_ttl=86400 )
 
 

@@ -1,120 +1,851 @@
 <!DOCTYPE html>
-<html>
- <head>
-  <title>Python Flask Create a Progress Bar Data Insert using Jquery Ajax Bootstrap and Mysqldb database</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<html class="overflow-x-hidden no-js" lang="en-US">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
-<script>
- $(document).ready(function(){
- $('#sample_form').on('submit', function(event){
-   event.preventDefault();
-   var count_error = 0;
+<head>
+<title>Instabot</title>
 
-   if($('#username').val() == '')
-   {
-    $('#first_name_error').text('User Name is required');
-    count_error++;
-   }
-   else
-   {
-    $('#first_name_error').text('');
-   }
 
-   if($('#useremail').val() == '')
-   {
-    $('#last_name_error').text('Email is required');
-    count_error++;
-   }
-   else
-   {
-    $('#last_name_error').text('');
-   }
+<link rel="stylesheet" id="convertkit-tailwindcss-css" href="static/css/tailwind.css">
+<link rel="stylesheet" id='convertkit-wp-styles-css' href="static/css/styles.min.css">
+<script type='text/javascript' src='https://code.jquery.com/jquery-3.4.1.min.js' id='jquery-js'></script>
 
-   if(count_error == 0)
-   {
-    $.ajax({
-   url:"/ajaxprogressbar",
-   method:"POST",
-   data:$(this).serialize(),
-   beforeSend:function()
-   {
-    $('#save').attr('disabled', 'disabled');
-    $('#process').css('display', 'block');
-   },
-   success:function(data)
-   {
-    var percentage = 0;
 
-    var timer = setInterval(function(){
-     percentage = percentage + 20;
-     progress_bar_process(percentage, timer,data);
-    }, 1000);
-   }
-  })
-   }
-   else
-   {
-    return false;
-   }
+</head>
 
+
+<!-- This look like the correct space in body -->
+
+<body class="home page-template page-template-page--home page-template-page--home-php page page-id-38 group-blog overflow-x-hidden leading-relaxed text-gray-700 font-normal min-h-screen bg-white min-h-screen flex flex-col antialiased">
+
+<!-- This look like for the fonts -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i|Domine:400,700&amp;subset=latin-ext" rel="stylesheet">
+
+
+<header class="bg-gray-100 header header--left header--home">
+
+
+
+
+<!-- NAV BAR-->
+
+<nav id="mega-nav" class="navbar navbar--dark">
+  <div class="container relative">
+    <div class="pl-20 navbar-header sm:pl-0">
+
+      <a href="#"><img src="static/img/logo.png" style="width:200px"></a>
+
+    </div>
+
+
+    <div id="navbar" class="navbar-collapse navbar-collapse--bg collapse menu-large menu-mega">
+      <ul class="items-center nav navbar-nav navbar-right menu sm:flex">
+
+
+        <!-- Nav Item: Log In -->
+        <li class="menu-item">
+          <a class="menu-title" href="https://app.convertkit.com/users/login" data-cta-name="header-menu-item">Log In</a>
+        </li>
+
+        <!-- Nav Item: Main CTA -->
+        <li class="mb-20 text-center menu-btn sm:mb-0 menu-item">
+          <a href="https://app.convertkit.com/users/signup?plan=free-limited" data-cta-name="header-menu-item">Sign up free</a>
+        </li>
+      </ul>
+    </div>
+    <!--/.nav-collapse -->
+  </div>
+</nav>
+</header>
+
+
+
+
+
+<style>.video__home {
+	width: 100%
+}
+
+@media all and (min-width:768px) {
+	.video__home {
+		width: 580px
+	}
+}
+
+@media all and (min-width:992px) {
+	.video__home {
+		width: 680px
+	}
+}
+
+@media all and (min-width:1200px) {
+	.video__home {
+		width: 880px
+	}
+}
+
+.video video {
+	max-width: 100%
+}
+
+.video .inner-fade {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	position: absolute;
+	background-repeat: no-repeat
+}
+
+.video .left {
+	background: -webkit-gradient(linear, left top, right top, from(#f3f6f9), color-stop(15%, rgba(243, 246, 249, 0)));
+	background: -webkit-linear-gradient(left, #f3f6f9, rgba(243, 246, 249, 0) 15%);
+	background: linear-gradient(90deg, #f3f6f9, rgba(243, 246, 249, 0) 15%)
+}
+
+.video .top {
+	background: -webkit-gradient(linear, left bottom, left top, from(#f3f6f9), color-stop(15%, rgba(243, 246, 249, 0)));
+	background: -webkit-linear-gradient(bottom, #f3f6f9, rgba(243, 246, 249, 0) 15%);
+	background: linear-gradient(0deg, #f3f6f9, rgba(243, 246, 249, 0) 15%)
+}
+
+.video .right {
+	background: -webkit-gradient(linear, right top, left top, from(#f3f6f9), color-stop(15%, rgba(243, 246, 249, 0)));
+	background: -webkit-linear-gradient(right, #f3f6f9, rgba(243, 246, 249, 0) 15%);
+	background: linear-gradient(-90deg, #f3f6f9, rgba(243, 246, 249, 0) 15%)
+}
+
+.video .bottom {
+	background: -webkit-gradient(linear, left top, left bottom, from(#f3f6f9), color-stop(15%, rgba(243, 246, 249, 0)));
+	background: -webkit-linear-gradient(top, #f3f6f9, rgba(243, 246, 249, 0) 15%);
+	background: linear-gradient(180deg, #f3f6f9, rgba(243, 246, 249, 0) 15%)
+}
+
+@media all and (min-width:768px) {
+	.home-wrapper {
+		margin-top: -60px;
+		position: relative
+	}
+}
+
+.home-creator .creator-quote blockquote {
+	border-color: #dce1e5
+}
+
+.home-creator-watch {
+	left: 50%;
+	top: 55%;
+	background-color: rgba(255, 255, 255, .8);
+	padding: 15px 22px;
+	border-radius: 10rem;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%)
+}
+
+.home-creator-watch:hover {
+	background-color: #fff
+}
+
+@media all and (min-width:768px) {
+	.home-creator .creator-image {
+		width: 550px
+	}
+}
+
+@media all and (min-width:992px) {
+	.home-creator .creator-image {
+		width: 600px
+	}
+}
+
+@media all and (min-width:1200px) {
+	.home-creator .creator-image {
+		width: 765px
+	}
+}
+
+.home-creator .creator-landing-page {
+	max-width: 250px;
+	width: 80%
+}
+
+@media all and (min-width:1200px) {
+	.home-creator .creator-landing-page {
+		max-width: 310px;
+		width: 100%
+	}
+}
+
+.home-creator .creator-landing-page-eric {
+	bottom: -80px;
+	right: 10px
+}
+
+@media all and (min-width:480px) {
+	.home-creator .creator-landing-page-eric {
+		right: 55px
+	}
+}
+
+@media all and (min-width:768px) {
+	.home-creator .creator-landing-page-eric {
+		right: 60px;
+		bottom: -90px
+	}
+}
+
+@media all and (min-width:992px) {
+	.home-creator .creator-landing-page-eric {
+		right: 90px
+	}
+}
+
+.home-creator .creator-landing-page-deb {
+	bottom: -90px;
+	right: 10px
+}
+
+@media all and (min-width:480px) {
+	.home-creator .creator-landing-page-deb {
+		right: 95px;
+		bottom: -80px
+	}
+}
+
+@media all and (min-width:768px) {
+	.home-creator .creator-landing-page-deb {
+		right: 120px;
+		bottom: -65px
+	}
+}
+
+@media all and (min-width:992px) {
+	.home-creator .creator-landing-page-deb {
+		right: 80px;
+		bottom: -60px
+	}
+}
+
+@media all and (min-width:1200px) {
+	.home-creator .creator-landing-page-deb {
+		right: 3px;
+		bottom: -10px
+	}
+}
+
+.home-creator .creator-landing-page-glo {
+	bottom: -80px;
+	left: 50px
+}
+
+@media all and (min-width:768px) {
+	.home-creator .creator-landing-page-glo {
+		bottom: -90px
+	}
+}
+
+@media all and (min-width:992px) {
+	.home-creator .creator-landing-page-glo {
+		bottom: -60px
+	}
+}
+
+@media all and (min-width:1200px) {
+	.home-creator .creator-landing-page-glo {
+		bottom: -30px
+	}
+}
+
+.home-creator .creator-landing-page-barron {
+	bottom: -80px;
+	left: 60px
+}
+
+@media all and (min-width:768px) {
+	.home-creator .creator-landing-page-barron {
+		bottom: -90px
+	}
+}
+
+@media all and (min-width:992px) {
+	.home-creator .creator-landing-page-barron {
+		left: 70px;
+		bottom: -60px
+	}
+}
+
+@media all and (min-width:1200px) {
+	.home-creator .creator-landing-page-barron {
+		bottom: -50px
+	}
+}
+
+.home-creator-left .creator-image {
+	margin-left: -80px;
+	max-width: 760px;
+	padding-right: 20px
+}
+
+@media all and (min-width:768px) {
+	.home-creator-left .creator-image {
+		margin-left: -160px
+	}
+}
+
+@media all and (min-width:992px) {
+	.home-creator-left .creator-image {
+		margin-left: -130px;
+		padding-right: 30px
+	}
+}
+
+@media all and (min-width:1200px) {
+	.home-creator-right .creator-quote {
+		margin-right: 90px
+	}
+}
+
+.home-creator-right .creator-image {
+	margin-right: -80px;
+	margin-left: 20px;
+	max-width: 760px
+}
+
+@media all and (min-width:768px) {
+	.home-creator-right .creator-image {
+		margin-left: 30px;
+		margin-right: -160px
+	}
+}
+
+@media all and (min-width:992px) {
+	.home-creator-right .creator-image {
+		margin-right: -130px
+	}
+}
+
+.home .number-row img {
+	max-width: 90%
+}
+
+@media all and (min-width:480px) {
+	.home .number-row img {
+		max-width: 358px
+	}
+}
+
+@media all and (min-width:768px) {
+	.home .number-row .img-share-ideas {
+		-webkit-transform: translate(0, -11%);
+		-ms-transform: translate(0, -11%);
+		transform: translate(0, -11%)
+	}
+}
+
+@media all and (min-width:992px) {
+	.home .number-row .img-share-ideas {
+		-webkit-transform: translate(0, -19%);
+		-ms-transform: translate(0, -19%);
+		transform: translate(0, -19%)
+	}
+}
+
+@media all and (min-width:1200px) {
+	.home .number-row .img-share-ideas {
+		-webkit-transform: translate(0, -13%);
+		-ms-transform: translate(0, -13%);
+		transform: translate(0, -13%)
+	}
+}
+
+@media all and (min-width:768px) {
+	.home .number-row .img-connect-audience {
+		-webkit-transform: translate(0, -15%);
+		-ms-transform: translate(0, -15%);
+		transform: translate(0, -15%)
+	}
+}
+
+@media all and (min-width:992px) {
+	.home .number-row .img-connect-audience {
+		-webkit-transform: translate(0, -14%);
+		-ms-transform: translate(0, -14%);
+		transform: translate(0, -14%)
+	}
+}
+
+@media all and (min-width:1200px) {
+	.home .number-row .img-connect-audience {
+		-webkit-transform: translate(0, -13%);
+		-ms-transform: translate(0, -13%);
+		transform: translate(0, -13%)
+	}
+}
+
+@media all and (min-width:768px) {
+	.home .number-row .img-earn-income {
+		-webkit-transform: translate(0, -10%);
+		-ms-transform: translate(0, -10%);
+		transform: translate(0, -10%)
+	}
+}
+
+@media all and (min-width:992px) {
+	.home .number-row .img-earn-income {
+		-webkit-transform: translate(0, -8%);
+		-ms-transform: translate(0, -8%);
+		transform: translate(0, -8%)
+	}
+}
+
+@media all and (min-width:1200px) {
+	.home .number-row .img-earn-income {
+		-webkit-transform: translate(0, -13%);
+		-ms-transform: translate(0, -13%);
+		transform: translate(0, -13%)
+	}
+}
+
+@media all and (max-width:767px) {
+	.creator-image-container {
+		-webkit-box-ordinal-group: 3;
+		-ms-flex-order: 2;
+		order: 2
+	}
+}
+
+@media all and (max-width:767px) {
+	.creator-quote {
+		-webkit-box-ordinal-group: 2;
+		-ms-flex-order: 1;
+		order: 1
+	}
+}
+
+.header-lpc {
+	background-position: center 15%;
+	background-image: url(static/img/background-top_890.jpg)
+}
+
+.header-lpc-image {
+	max-width: 594px
+}
+
+@media all and (min-width:992px) {
+	.header-lpc-image {
+		right: -37px
+	}
+}
+
+@media all and (min-width:768px) {
+	.header-lpc {
+		background-image: url(static/img/background-top_1438.jpg)
+	}
+}
+
+@media all and (min-width:992px) {
+	.header-lpc {
+		background-image: url(static/img/background-top_2227.jpg)
+	}
+}
+
+@media all and (min-width:1200px) {
+	.header-lpc {
+		background-image: url(static/img/background-top_2450.jpg)
+	}
+}
+
+.header-lpc:before {
+	background: -webkit-linear-gradient(138.45deg, #fb6970 23.68%, #ecb871 101.6%), #fb6970;
+	background: linear-gradient(311.55deg, #fb6970 23.68%, #ecb871 101.6%), #fb6970;
+	content: "";
+	position: absolute;
+	opacity: .9;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0
+}
+
+</style>
+
+
+
+
+
+
+
+
+
+<style >.whats-new-img-workshop{max-width:125px}.whats-new-img-issue{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}@media all and (min-width:992px) and (max-width:1199px){.whats-new-img-issue{-ms-flex-item-align:start;align-self:flex-start}}.whats-new-img-issue img{max-width:99px}@media all and (min-width:992px) and (max-width:1199px){.whats-new-img-issue img{max-width:75px}}.whats-new-grid{-ms-grid-columns:1fr;grid-template-columns:1fr;grid-auto-rows:1fr;grid-column-gap:30px}@media all and (min-width:992px){.whats-new-grid{-ms-grid-columns:1fr 1fr 1fr;grid-template-columns:1fr 1fr 1fr}}@media all and (min-width:992px) and (max-width:1199px){.whats-new-content{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}}.whats-new-description{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1}@media all and (min-width:992px) and (max-width:1199px){.whats-new-description{-webkit-box-flex:0;-ms-flex-positive:0;flex-grow:0}}
+</style>
+
+
+
+
+<!--/  First Click to action  -->
+
+
+
+<div class="bg-gray-100 home-wrapper">
+    <div class="container sm:mb-50 mt-100 sm:mt-30">
+    <div class="items-center mx-auto row row-flex max-width--norm">
+      <div class="mb-20 col-base-12 col-sm-5 sm:mb-0 sm:pt-100 md:pt-50 lg:pt-0">
+        <h1 class="m-0">Connect with your fans faster </h1>
+        <p class="mt-20 text-gray-700 text-md mb-30">
+          ConvertKit helps you find your audience, turn them into true fans, and earn a living as a creator with our audience building and email marketing software.
+        </p>
+        <div data-proof-id="banner-1"></div>
+        <div class="_buttons lg:flex">
+          <a href="https://app.convertkit.com/users/signup?plan=free-limited" data-cta-name="create-free-account" class="mb-10 mr-10 font-semibold btn btn-lg btn-primary" role="button">
+            Get started for free
+          </a>
+
+        </div>
+      </div>
+      <div class="col-base-12 col-sm-6 col-sm-offset-1">
+        <div>
+          <div class="relative video video__home">
+            <video autoplay loop muted playsinline poster="static/img/video-poster-calvin.jpg">
+              <source src="static/img/ck-product-demonstration-padding-calvin.mp4" type="video/mp4">
+              Your browser does not support the video tag. Please upgrade your browser.
+            </video>
+
+            <div class="inner-fade left"></div>
+            <div class="inner-fade right"></div>
+            <div class="inner-fade top"></div>
+            <div class="inner-fade bottom"></div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<!--/  Section temoignage client   -->
+
+
+
+<div class="container">
+    <div class="items-center row row-flex max-w-norm mb-128 home-creator home-creator-left">
+
+
+      <div class="relative creator-image-container">
+
+        <div class="creator-image">
+          <div class="sm:relative">
+            <span class="cursor-pointer text-inherit video-btn" data-toggle="modal" data-target="#creatorVideoModal" data-src="https://www.youtube.com/embed/KDF9JYHFmrU" data-cta-name="creator-story-video" data-segment-interaction="general" data-interaction-type="click">
+              <button class="absolute text-sm font-semibold home-creator-watch transition--all" style="width:208px;">
+                <i class="mr-5 fas fa-play"></i>
+                Watch Eric's Story
+              </button>
+            </span>
+            <img src="https://3j6x6z2bx1qq1aawwt3b6y0a-wpengine.netdna-ssl.com/wp-content/themes/ConvertKit/assets/images/pages/home/eric-profile-blob.jpg" alt="" />
+          </div>
+        </div>
+
+        <div class="absolute creator-landing-page creator-landing-page-eric">
+          <img class="lazy" data-src="https://3j6x6z2bx1qq1aawwt3b6y0a-wpengine.netdna-ssl.com/wp-content/themes/ConvertKit/assets/images/pages/home/landing-page-eric.png" alt="" />
+        </div>
+
+     </div>
+
+
+
+
+
+      <div class="col-base-12 col-sm-6 col-lg-5 col-lg-offset-1 creator-quote">
+        <h2>Share your creative process</h2>
+        <p>For Eric, success as a muralist means authenticity in his work. He uses his newsletters and blog to teach his readers exactly how he makes things, breaking it down step by step.</p>
+        <blockquote class="blockquote-sm hypens-none">
+          <span class="text-gray-700">
+            “I wasn’t doing it to get their sales, I was doing it because <strong>I really wanted to share.</strong>”
+          </span>
+          <p class="mt-10 text-xs not-italic font-semibold text-gray-600 text-uppercase">- Eric Friedensohn (Aka Efdot), Muralist</p>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- Code pour faire la vague-->
+
+  <div class="relative pt-100">
+    <div style="position: absolute;bottom: -1px;line-height: 0;padding: 0;width: 100%;"> <svg width="1440" height="98" viewBox="0 0 1440 98" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%;" preserveAspectRatio="none">
+        <path d="M586.203 15.8956C774.268 42.4389 862.799 76.6302 1207.42 93.501C1320.4 99.032 1393.38 93.2301 1441 81.1469L1441 98H0V21.5267C141.248 10.501 349.055 -17.575 586.203 15.8956Z" fill="white"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!--  THE PROCESSUS FLOW-->
+
+
+
+
+<div class="container mt-50">
+  <div class="sm:text-center mb-75">
+    <h1>With ConvertKit, creators like you can:</h1>
+  </div>
+  <div class="row ">
+    <div class="col-base-12 col-lg-8 col-lg-offset-2">
+      <div class="relative row number-row number-row-animate animate-this animate--hold animate--once pb-50 sm:mt-30 lg:mt-10" data-animation="num-height">
+        <div class="col-base-12 col-sm-6" data-number="1">
+          <div class="pl-30 sm:pl-20">
+            <h4 class="pl-20 mt-0 sm:pl-0">Easily share ideas</h4>
+            <p class="pl-20 sm:pl-0">As a creator, you're full of exciting ideas. In just minutes you can test those ideas on your
+              audience by creating sign up forms or landing pages. Are they subscribing? Then you've got a winning idea.</p>
+          </div>
+        </div>
+        <div class="col-base-12 col-sm-6 sm:text-center">
+          <img class="lazy img-share-ideas ml-30 sm:ml-0" src="static/img/illustration-landing-page.png">
+
+        </div>
+      </div>
+
+
+      <div class="row number-row">
+        <div class="col-base-12 col-sm-6" data-number="3">
+          <div class="pl-30 sm:pl-20">
+            <h4 class="pl-20 mt-0 sm:pl-0">Earn an income</h4>
+            <p class="pl-20 sm:pl-0">Once you know your audience and their needs, sending relevant emails about your products and
+              services to the right people at the right time turns the trust you’ve built into sales.</p>
+          </div>
+        </div>
+        <div class="col-base-12 col-sm-6 sm:text-center">
+          <img class="lazy img-earn-income ml-30 sm:ml-0" src="static/img/illustration-automation.png">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+ <!--  Bottom Call to action     -->
+
+
+<div style="width:30px; height:3px; border-radius:2rem;" class="mx-auto bg-gray-300 mt-100 mb-100 hidden-xs">
+</div>
+<div class="container mt-50 sm:mt-0">
+  <div class="row mb-100">
+    <div class="col-base-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 sm:text-center">
+      <div class="mx-auto">
+        <h1 class="mt-0">Are you ready to start your next creative project for free?</h1>
+        <p>The first step is to create a landing page to share your idea with your followers. Create an account on ConvertKit’s Free
+          plan and you can have that landing page up in just minutes.</p>
+        <div class="mt-50">
+          <a href="https://app.convertkit.com/users/signup?plan=free-limited" data-cta-name="bottom-CTA" class="font-semibold btn btn-lg btn-primary" role="button">
+            Create a free account <i class="ml-5 far fa-angle-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+ <!--  THE FOOTER    -->
+
+
+
+
+
+<footer class="footer" role="contentinfo">
+  <div class="sub-footer pb-50 pt-20">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-base-12 hidden-sm col-md-4 mb-50 text-center md:text-left">
+          <img class="footer-creators-logo lazy" src="static/img/the-future-belongs-to-creators-white.svg" alt="The future belongs to creators" />
+        </div>
+        <div class="col-base-6 col-xs-6 col-sm-3 col-md-2">
+          <p class="text-uppercase text-white mt-0 mb-20 opacity-50 text-xs font-semibold text-uppercase">Features</p>
+          <ul id="menu-footer-product" class="menu"><li id="menu-item-9116" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9116"><a href="features.html" data-cta-name="footer-link">Feature Overview</a></li>
+<li id="menu-item-17019" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17019"><a href="features/forms.html" data-cta-name="footer-link">Sign up forms</a></li>
+<li id="menu-item-20554" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20554"><a href="features/landing-pages.html" data-cta-name="footer-link">Landing pages</a></li>
+<li id="menu-item-28691" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28691"><a href="landing-page-templates.html" data-cta-name="footer-link">Landing page templates</a></li>
+</ul>        </div>
+
+        <div class="col-base-6 col-xs-6 col-sm-3 col-md-2">
+          <p class="text-uppercase text-white mt-0 mb-20 opacity-50 text-xs font-semibold text-uppercase">The Project</p>
+          <ul id="menu-footer-company" class="menu"><li id="menu-item-1898" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1898"><a href="about.html" data-cta-name="footer-link">About us</a></li>
+<li id="menu-item-10605" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10605"><a href="mission.html" data-cta-name="footer-link">Mission, vision, &#038; values</a></li>
+<li id="menu-item-17515" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17515"><a href="careers.html" data-cta-name="footer-link">Careers</a></li>
+</ul>        </div>
+
+        <div class="col-base-6 col-xs-6 col-sm-3 col-md-2">
+          <p class="text-uppercase text-white mt-0 mb-20 opacity-50 text-xs font-semibold text-uppercase">Resources</p>
+          <ul id="menu-footer-resources" class="menu"><li id="menu-item-25676" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25676"><a href="guides.html" data-cta-name="footer-link">How-to guides</a></li>
+<li id="menu-item-25681" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25681"><a href="training.html" data-cta-name="footer-link">Workshops</a></li>
+<li id="menu-item-25677" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25677"><a href="articles.html" data-cta-name="footer-link">Blog articles</a></li>
+</ul>        </div>
+
+
+
+
+      </div>
+    </div>
+  </div>
+  <div class="social-footer pt-30">
+    <div class="container">
+      <div class="row">
+        <div class="col-base-12 col-sm-4 col-sm-push-8">
+          <div class="social-icons">
+            <div class="social-icons__item">
+              <a href="https://www.facebook.com/convertkit" target="_blank" data-cta-name="footer-social-link-facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i><span class="screen-reader-text">Facebook</span></a>
+            </div>
+            <div class="social-icons__item">
+              <a href="https://twitter.com/convertkit" target="_blank" data-cta-name="footer-social-link-twitter" target="_blank" rel="noopener"><i class="fab fa-twitter"></i><span class="screen-reader-text">Twitter</span></a>
+            </div>
+            <div class="social-icons__item">
+              <a href="https://www.instagram.com/convertkit" target="_blank" data-cta-name="footer-social-link-instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i><span class="screen-reader-text">Instagram</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-base-12 col-sm-8 col-sm-pull-4">
+
+
+<script type="text/javascript" language="javascript">
+  $(function() {
+    var teamMemberLocations = new Array();
+
+            teamMemberLocations.push('Brooklyn, NY');
+                teamMemberLocations.push('Portland, Oregon');
+                teamMemberLocations.push('Chania, Greece');
+                teamMemberLocations.push('Burke, VA');
+                teamMemberLocations.push('Devon, United Kingdom');
+                teamMemberLocations.push('New York, New York');
+                teamMemberLocations.push('Pittsburgh, PA');
+                teamMemberLocations.push('St. Paul, MN');
+                teamMemberLocations.push('Milwaukee, Wisconsin');
+                teamMemberLocations.push('San Jose, California ');
+                teamMemberLocations.push('Sydney, Australia');
+                teamMemberLocations.push('Asheville, NC');
+                teamMemberLocations.push('Boulder, CO');
+                teamMemberLocations.push('Sunnyvale, California');
+                teamMemberLocations.push('Denver, Colorado');
+                teamMemberLocations.push('Atlanta, GA');
+                teamMemberLocations.push('Portland, OR');
+                teamMemberLocations.push('Budapest, Hungary');
+                teamMemberLocations.push('Charlotte, NC');
+                teamMemberLocations.push('Scottsdale, Arizona');
+                teamMemberLocations.push('Nashville, TN');
+                teamMemberLocations.push('Auckland, New Zealand');
+                teamMemberLocations.push('Boise, Idaho');
+                teamMemberLocations.push('Toronto, Canada');
+                teamMemberLocations.push('Redmond, WA');
+                teamMemberLocations.push('Jamestown, North Carolina');
+                teamMemberLocations.push('Barcelona');
+                teamMemberLocations.push('Dublin, Ireland');
+                teamMemberLocations.push('Austin, Texas');
+                teamMemberLocations.push('New Jersey');
+                teamMemberLocations.push('Chicago, IL');
+                teamMemberLocations.push('Boise, ID');
+                teamMemberLocations.push('Annapolis, MD');
+                teamMemberLocations.push('Lenexa, Kansas');
+                teamMemberLocations.push('Denver, Colorado');
+                teamMemberLocations.push('Bratislava, Slovakia');
+                teamMemberLocations.push('');
+                teamMemberLocations.push('Milwaukee, Wisconsin');
+                teamMemberLocations.push('Boise, Idaho');
+                teamMemberLocations.push('St. Louis, Missouri');
+                teamMemberLocations.push('San Diego, California');
+                teamMemberLocations.push('Boise, Idaho');
+                teamMemberLocations.push('Québec City, Canada');
+                teamMemberLocations.push('St. Petersburg, FL');
+                teamMemberLocations.push('Charlotte, North Carolina');
+                teamMemberLocations.push('San Luis Obispo, California');
+                teamMemberLocations.push('Valencia, Spain');
+                teamMemberLocations.push('Boise, Idaho');
+                teamMemberLocations.push('Ljubljana, Slovenia');
+                teamMemberLocations.push('Sarasota, FL');
+                teamMemberLocations.push('Denver, Colorado');
+                teamMemberLocations.push('Portland, Oregon');
+                teamMemberLocations.push('Nashville, Tennessee');
+                teamMemberLocations.push('Planet Earth');
+                teamMemberLocations.push('Chiang Mai, Thailand');
+                teamMemberLocations.push('Traverse City, Michigan');
+                teamMemberLocations.push('Boise, Idaho');
+                teamMemberLocations.push('Barcelona');
+                teamMemberLocations.push('Boise, Idaho');
+
+    var uniqueTeamMembers = teamMemberLocations.filter(function(item, pos){
+      return teamMemberLocations.indexOf(item)== pos;
+    });
+    var shuffledUniqueTeam = shuffleArray(uniqueTeamMembers);
+    function rotateTerm() {
+      var count = $("#teamLocation").data("term") || 0;
+      $("#teamLocation").data("term", count == shuffledUniqueTeam.length -1 ? 0 : count + 1).text(shuffledUniqueTeam[count]).fadeIn()
+                  .delay(2000).fadeOut(200, rotateTerm);
+    }
+    rotateTerm();
+    var teamString = "<span></span>";
+    var counts = {};
+    for (var i = 0; i < teamMemberLocations.length; i++) {
+        counts[teamMemberLocations[i]] = 1 + (counts[teamMemberLocations[i]] || 0);
+    }
+
+    function countUnique(iterable) {
+      return new Set(iterable).size;
+    }
+    function shuffleArray(array) {
+      var currentIndex = array.length, temporaryValue, randomIndex;
+
+      while (0 !== currentIndex) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
+
+      return array;
+    }
+
+    $('.made-with-love').attr('data-original-title', "We're a completely remote team based out of "+countUnique(teamMemberLocations)+" cities around the world.");
+    $('.made-with-love').tooltip();
+
+    var $teamCountSpan = $('#teamCityCount');
+    if ($teamCountSpan.length) {
+      $teamCountSpan.html(countUnique(teamMemberLocations));
+    }
   });
 
-  function progress_bar_process(percentage, timer,data)
-  {
- $('.progress-bar').css('width', percentage + '%');
- if(percentage > 100)
- {
-  clearInterval(timer);
-  $('#sample_form')[0].reset();
-  $('#process').css('display', 'none');
-  $('.progress-bar').css('width', '0%');
-  $('#save').attr('disabled', false);
-  $('#success_message').html(data);
-  setTimeout(function(){
-   $('#success_message').html('');
-  }, 5000);
- }
-  }
-
- });
 </script>
- </head>
- <body>
-  <br />
-  <br />
-  <div class="container">
-   <h1 align="center">Python Flask Create a Progress Bar Data Insert using Jquery Ajax Bootstrap and Mysqldb database</h1>
-   <br />
-   <div class="panel panel-default">
-    <div class="panel-heading">
-     <h3 class="panel-title">Registration</h3>
+
+
+<div class="made-with-love" data-original-title="this">Made with <i class="fa fa-heart text-sm text-red-400" aria-hidden="true"></i> in <div id="teamLocation">Boise, ID</div></div>
+          <p class="footer__meta">
+            <span class="copyright opacity-75">Instabot© 2021</span>
+            <span class="slash">//</span>
+            <a href="privacy.html" data-cta-name="footer-link">Privacy Policy</a>
+<a href="terms.html" data-cta-name="footer-link">Terms of Service</a>
+          </p>
+        </div>
+      </div>
     </div>
-      <div class="panel-body">
-       <span id="success_message"></span>
-       <form method="post" id="sample_form">
-     <div class="form-group">
-        <label>User Name</label>
-         <input type="text" name="username" id="username" class="form-control" />
-         <span id="first_name_error" class="text-danger"></span>
-        </div>
-  <div class="form-group">
-         <label>Email</label>
-         <input type="text" name="useremail" id="useremail" class="form-control" />
-         <span id="last_name_error" class="text-danger"></span>
-        </div>
-  <div class="form-group" align="center">
-         <input type="submit" name="save" id="save" class="btn btn-info" value="Save" />
-        </div>
-       </form>
-       <div class="form-group" id="process" style="display:none;">
-        <div class="progress">
-       <div class="progress-bar progress-bar-striped active bg-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" style=""></div>
-      </div>
-       </div>
-      </div>
-     </div>
   </div>
- </body>
+</footer>
+
+<script type='text/javascript' defer src='http://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js?ver=3.4.1' id='bootstrap-js-js'></script>
+<script type='text/javascript' src='https://3j6x6z2bx1qq1aawwt3b6y0a-wpengine.netdna-ssl.com/wp-includes/js/wp-embed.min.js?ver=8373ae38668148ce201c1a3ab741bf51' id='wp-embed-js'></script>
+
+</body>
+
+
 </html>

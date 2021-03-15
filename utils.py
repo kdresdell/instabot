@@ -110,8 +110,8 @@ def run_instapy_bot(Pemail, Pinsta_username, Pinsta_password, Ptags, Pcomments, 
         with smart_run(session):
 
             #settings -https://instapy.org/settings/
-            session.set_do_follow(True, percentage=10)
-            session.set_do_comment(True, percentage=50)
+            session.set_do_follow(True, percentage=5)
+            session.set_do_comment(True, percentage=40)
             session.set_comments([Pcomments])
             #session.set_comments(['Nice shot! @{}'], media='Photo')
 
